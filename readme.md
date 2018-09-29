@@ -1,7 +1,5 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p [ ![Codeship Status for Wtyd/foro](https://app.codeship.com/projects/a060e450-a60e-0136-ff95-4e0f66c0f6b3/status?branch=master)](https://app.codeship.com/projects/308102) </p>
-<p {<img src="https://app.codeship.com/projects/a060e450-a60e-0136-ff95-4e0f66c0f6b3/status?branch=master" />}[https://app.codeship.com/projects/308102]</p>
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
