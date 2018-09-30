@@ -1,8 +1,8 @@
 <?php
 
-class CreatePostsTest extends FeatureTestCase{
-    
-    public function test_a_user_create_a_post()
+class CreatePostsTest extends FeatureTestCase
+{
+    function test_a_user_create_a_post()
     {
         //Having
         $title = 'Esta es una pregunta';
@@ -13,9 +13,9 @@ class CreatePostsTest extends FeatureTestCase{
 
         //When
         $this->visit(route('posts.create'))
-            ->type($title, 'title')
-            ->type($content, 'content')
-            ->press('Publicar');
+        ->type($title, 'title')
+        ->type($content, 'content')
+        ->press('Publicar');
 
         //Then
         $this->seeInDatabase('posts', [
@@ -27,5 +27,11 @@ class CreatePostsTest extends FeatureTestCase{
 
         //Test a user is redirected to the posts details after creating it
         $this->see('h1', 'Esta es una pregunta');
+    }
+
+    function test_creating_a_post_requires_authentication()
+    {
+        $this->visit(route('posts.create'))
+        ->seePageIs(route('login'));
     }
 }

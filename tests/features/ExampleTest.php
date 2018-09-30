@@ -9,7 +9,6 @@ class ExampleTest extends FeatureTestCase
     use DatabaseTransactions;
     /**
      * @test
-     *
      */
     function basic_example()
     {
@@ -19,6 +18,6 @@ class ExampleTest extends FeatureTestCase
 
         $this->actingAs($user, 'api')
             ->visit('api/user')
-             ->see('Jorge El Puto Amo');
+            ->see('Jorge El Puto Amo');
     }
 }
