@@ -20,4 +20,14 @@ class Post extends Model
 
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    /**
+     * Genera un atributo dinamico mediante funciones magicas de php que usa la clase Model
+     *
+     * @return url La url del post con el formato: id-slug.
+     */
+    public function getUrlAttribute()
+    {
+        return route('posts.show', [$this->id, $this->slug]);
+    }
 }
