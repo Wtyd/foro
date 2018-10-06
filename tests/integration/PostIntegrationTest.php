@@ -1,6 +1,5 @@
 <?php
 
-use App\Post;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PostIntegrationTest extends TestCase
@@ -9,15 +8,9 @@ class PostIntegrationTest extends TestCase
 
     public function test_a_slug_is_generated_and_saved_to_the_database()
     {
-        $user = $this->defaultUser();
-
-        $post = factory(Post::class)->make([
+        $post = $this->createPost([
             'title' => 'Como instalar Laravel'
         ]);
-
-        $user->posts()->save($post);
-
-        $post->save();
         
         /*
         Las 3 formas de comprobar que el post se ha guardado son correctas.

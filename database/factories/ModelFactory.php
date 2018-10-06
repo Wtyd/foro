@@ -23,6 +23,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+/**
+ * Crea un post.
+ * - Si se le pasa el $user_id lo asocia a ese usuario.
+ * - Si no, crea un usuario y lo asocia. La llamada al factory de User esta en vuelta en un closure para evitar que al pasarle el $user_id
+ * cree tambien un usuario que no sirva para nada.
+ */
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -30,5 +36,8 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence,
         'content' => $faker->paragraph,
         'pending' => $faker->boolean,
+        'user_id' => function () {
+            return factory(\App\User::class)->create()->id;
+        },
     ];
 });
