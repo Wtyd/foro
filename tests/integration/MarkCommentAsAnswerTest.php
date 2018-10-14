@@ -38,4 +38,4 @@ class MarkCommentAsAnswerTest extends TestCase
 
         $this->assertTrue($comments->last()->fresh()->answer);
     }
-}
+}//art migr:ref --database=mysql_tests
