@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PostCommented;
 
 class User extends Authenticatable
 {
@@ -42,6 +44,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'subscriptions');
     }
+
+    public function unsubscribeFrom(Post $post)
+    {
+        $this->subscriptions()->detach($post);
+    }
+
+
+    public function createPost(array $data)
+    {
+        $post = new Post($data);
+
+        $this->posts()->save($post);
+
+        $this->subscribeTo($post);
+
+        return $post;
+    }
+
     public function comment(Post $post, $message)
     {
         $comment = new Comment([
@@ -50,6 +70,13 @@ class User extends Authenticatable
         ]);
 
         $this->comments()->save($comment);
+
+        //Notify subscribers
+        Notification::send(
+            $post->subscribers()->where('users.id', '!=', $this->id)->get(),
+            new PostCommented($this, $comment));
+
+        return $comment;
     }
 
     public function isSubscribedTo(Post $post)
