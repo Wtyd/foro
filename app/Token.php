@@ -28,7 +28,7 @@ class Token extends Model
         return $token;
     }
 
-    public function senByEmail()
+    public function sendByEmail()
     {
         Mail::to($this->user)->send(new TokenMail($this));
     }

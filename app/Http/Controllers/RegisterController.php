@@ -17,7 +17,7 @@ class RegisterController extends Controller
     {
         $user = User::create($request->all());
 
-        Token::generateFor($user)->senByEmail();
+        Token::generateFor($user)->sendByEmail();
 
         return redirect('register_confirmation');
     }
