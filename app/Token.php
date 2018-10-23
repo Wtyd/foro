@@ -15,6 +15,17 @@ class Token extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Por defecto Model usa el atributo id como ruta de un elemento. Con este metodo podemos modificar este comportamiento para usar otro atributo,
+     * en este caso, token.
+     *
+     * @return string url del token.
+     */
+    public function getRouteKeyName()
+    {
+        return 'token';
+    }
+
     public static function generateFor(User $user)
     {
         $token = new static;
