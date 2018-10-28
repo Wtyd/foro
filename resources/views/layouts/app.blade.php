@@ -13,6 +13,9 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <style>
+        .active { font-wight: bold;}
+    </style>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -46,6 +49,8 @@
                         &nbsp;
                     </ul>
 
+                    {!! Menu::make(trans('menu.main'), 'nav navbar-nav') !!}
+
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -78,7 +83,9 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->

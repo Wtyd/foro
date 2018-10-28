@@ -12,7 +12,7 @@
 
                         {{ Alert::render() }}
 
-                        {{!! Field::email('email') !!}}
+                        {!! Field::email('email') !!}
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
