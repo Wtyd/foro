@@ -53,7 +53,7 @@ class AcceptAnswerTest extends FeatureTestCase
         ]);
     }
 
-    function test_the_accept_button_is_hidden_whenj_the_comment_is_already_the_posts_answer()
+    function test_the_accept_button_is_hidden_when_the_comment_is_already_the_posts_answer()
     {
         $comment = factory(Comment::class)->create([
             'comment' => 'Esta va a ser la respuesta del post'

@@ -6,6 +6,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Post;
+use App\Category;
 
 class CreatePostTest extends DuskTestCase
 {
@@ -19,19 +20,20 @@ class CreatePostTest extends DuskTestCase
         //Having
         $user = $this->defaultUser();
 
-        $this->browse(function ($browser) use ($user) {
+        $category = factory(Category::class)->create();
+
+        $this->browse(function ($browser) use ($user, $category) {
             $browser->loginAs($user)
                 ->visitRoute('posts.create')
                 ->type('title', $this->title)
                 ->type('content', $this->content)
+                ->select('category_id', (string) $category->id)
                 ->press('Publicar')
 
                 //Test a user is redirected to the posts details after creating it
                 ->assertPathIs('posts/1-esta-es-una-pregunta');
         });
         
-        
-
         //Then
         $this->assertDatabaseHas('posts', [
             'title' => $this->title,
