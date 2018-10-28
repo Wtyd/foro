@@ -1,8 +1,7 @@
 <?php
 
-use App\Post;
+use App\{Category, Post};
 use Carbon\Carbon;
-use App\Category;
 
 class PostListTest extends FeatureTestCase
 {
@@ -48,6 +47,27 @@ class PostListTest extends FeatureTestCase
             ->seeInElement('h1', 'Posts de Laravel')
             ->see($laravelPost->title)
             ->dontSee($vuePost->title);
+    }
+
+    function test_a_user_can_see_posts_filtered_by_status()
+    {
+        $pendingPost = factory(Post::class)->create([
+            'title' => 'Post pendiente',
+            'pending' => true,
+        ]);
+
+        $completedPost = factory(Post::class)->create([
+            'title' => 'Post completado',
+            'pending' => false,
+        ]);
+
+        $this->visitRoute('posts.pending')
+            ->see($pendingPost->title)
+            ->dontSee($completedPost->title);
+
+        $this->visitRoute('posts.completed')
+            ->see($completedPost->title)
+            ->dontSee($pendingPost->title);
     }
 
     function test_the_posts_are_paginated()
