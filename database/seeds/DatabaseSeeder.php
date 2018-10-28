@@ -8,8 +8,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AdminTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(PostTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
+        $this->call(PostTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
     }

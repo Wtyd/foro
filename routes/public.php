@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', [
+Route::get('{category?}/', [ //? indica que es opcional
     'uses' => 'PostController@index',
     'as' => 'posts.index'
 ]);

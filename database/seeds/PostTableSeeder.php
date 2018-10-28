@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Post;
+use App\{Category, Post};
 
 class PostTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        factory(Post::class, 100)->create();
+        $categories = Category::select('id')->get();
+        
+        for ($i=0; $i < 100; $i++) {
+            factory(Post::class)->create([
+                'category_id' => $categories->random()->id,
+            ]);
+        }
     }
 }
