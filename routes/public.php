@@ -15,20 +15,20 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('post/{post}-{slug}', [
     'as' => 'posts.show',
-    'uses' => 'PostController@show'
+    'uses' => 'ShowPostController'
 ]);
 
 Route::get('posts-pendientes/{category?}', [
-    'uses' => 'PostController@index',
+    'uses' => 'ListPostController',
     'as' => 'posts.pending'
 ]);
 
 Route::get('posts-compleados/{category?}', [
-    'uses' => 'PostController@index',
+    'uses' => 'ListPostController',
     'as' => 'posts.completed'
 ]);
 
 Route::get('{category?}/', [ //? indica que es opcional
-    'uses' => 'PostController@index',
+    'uses' => 'ListPostController',
     'as' => 'posts.index'
 ]);

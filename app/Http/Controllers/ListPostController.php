@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{Category, Post};
 
-class PostController extends Controller
+class ListPostController extends Controller
 {
-    public function index(Category $category = null, Request $request)
+    public function __invoke(Category $category = null, Request $request)
     {
         $routeName = $request->route()->getName();
 
@@ -23,25 +23,6 @@ class PostController extends Controller
         $categoryItems = $this->getCategoryItems();
 
         return view('posts.index', compact('posts', 'category', 'categoryItems'));
-    }
-    
-    public function show(Post $post, $slug)
-    {
-        if ($post->slug != $slug) {
-            return redirect($post->url, 301);
-        }
-
-        return view('posts.show', compact('post'));
-    }
-
-    protected function getCategoryItems()
-    {
-        return Category::orderBy('name')->get()->map(function ($category) {
-            return [
-                'title' => $category->name,
-                'full_url' => route('posts.index', $category)
-            ];
-        })->toArray();
     }
 
     protected function getListScopes(Category $category, string $routeName)
@@ -63,6 +44,16 @@ class PostController extends Controller
         return $scopes;
     }
 
+    protected function getCategoryItems()
+    {
+        return Category::orderBy('name')->get()->map(function ($category) {
+            return [
+                'title' => $category->name,
+                'full_url' => route('posts.index', $category)
+            ];
+        })->toArray();
+    }
+    
     protected function getListOrder($order)
     {
         if ($order == 'recientes') {
