@@ -32,3 +32,4 @@ Route::get('{category?}/', [ //? indica que es opcional
     'uses' => 'ListPostController',
     'as' => 'posts.index'
 ]);
+
