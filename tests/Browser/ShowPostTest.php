@@ -22,14 +22,14 @@ class ShowPostTest extends DuskTestCase
             'user_id' => $user->id,
         ]);
         // When
-        $this->browse(function($browser) use($post){
+        $this->browse(function ($browser) use ($post) {
             $browser->visit($post->url)
                 ->assertSeeIn('h1', $post->title)
                 ->assertSee($post->content)
                 ->assertSee('Duilio Palacios');
         });
     }
-    
+
     function test_old_urls_are_redirected()
     {
         // Having
@@ -38,8 +38,8 @@ class ShowPostTest extends DuskTestCase
         ]);
         $url = $post->url;
         $post->update(['title' => 'New title']);
-        $this->browse(function($browser) use($post, $url){
-           $browser->visit($url)
+        $this->browse(function ($browser) use ($post, $url) {
+            $browser->visit($url)
                ->assertPathIs('/posts/1-new-title');
         });
     }

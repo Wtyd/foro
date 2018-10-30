@@ -46,12 +46,15 @@ class ListPostController extends Controller
 
     protected function getCategoryItems()
     {
-        return Category::orderBy('name')->get()->map(function ($category) {
-            return [
-                'title' => $category->name,
-                'full_url' => route('posts.index', $category)
-            ];
-        })->toArray();
+        return Category::query()
+            ->orderBy('name')
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'title' => $category->name,
+                    'full_url' => route('posts.index', $category)
+                ];
+            })->toArray();
     }
     
     protected function getListOrder($order)
