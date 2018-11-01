@@ -9,11 +9,10 @@ class ListPostController extends Controller
 {
     public function __invoke(Category $category = null, Request $request)
     {
-        
-
         list($orderColumn, $orderDirection) = $this->getListOrder($request->get('orden'));
 
         $posts = Post::query()
+            ->with(['user', 'category'])
             ->scopes($this->getListScopes($category, $request))
             ->orderBy($orderColumn, $orderDirection)
             ->paginate()
