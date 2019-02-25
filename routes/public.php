@@ -16,7 +16,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('post/{post}-{slug}', [
     'as' => 'posts.show',
     'uses' => 'ShowPostController'
-]);
+])->where('post', '\d+');
 
 Route::get('posts-pendientes/{category?}', [
     'uses' => 'ListPostController',
