@@ -12,8 +12,16 @@ Route::post('posts/create', [
 ]);
 
 //Votes
-Route::post('post/{post}-{slug}/vote', [
+Route::post('post/{post}-{slug}/upvote', [
     'uses' => 'VotePostController@upvote'
+])->where('post', '\d+');
+
+Route::post('post/{post}-{slug}/downvote', [
+    'uses' => 'VotePostController@downvote'
+])->where('post', '\d+');
+
+Route::delete('post/{post}-{slug}/vote', [
+    'uses' => 'VotePostController@undoVote'
 ])->where('post', '\d+');
 
 //Comments
