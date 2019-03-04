@@ -20,6 +20,13 @@
                 @endif
             </p>
 
+            <div>
+                <form>
+                    <button class="btn btn-default">+1</button>
+                    Puntuación actual: <strong id="current-score">5</strong>
+                    <button class="btn btn-default">11</button>
+                </form>
+            </div>
             {!! $post->safe_html_content !!}
 
             @if (auth()->check())
