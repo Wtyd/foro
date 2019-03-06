@@ -1,6 +1,7 @@
 <?php
 
-use App\{Comment, User};
+use App\Comment;
+use App\User;
 
 class AcceptAnswerTest extends FeatureTestCase
 {
@@ -66,4 +67,5 @@ class AcceptAnswerTest extends FeatureTestCase
         $this->visit($comment->post->url)
             ->dontSee('Aceptar respuesta');
     }
+    
 }
