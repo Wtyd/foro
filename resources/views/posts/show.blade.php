@@ -19,14 +19,9 @@
                     <span class="label label-success">Completado</span>
                 @endif
             </p>
+            <h4>{{ $post->score }}</h4>
 
-            <div>
-                <form>
-                    <button class="btn btn-default">+1</button>
-                    Puntuación actual: <strong id="current-score">5</strong>
-                    <button class="btn btn-default">11</button>
-                </form>
-            </div>
+            <app-vote></app-vote>
             {!! $post->safe_html_content !!}
 
             @if (auth()->check())
